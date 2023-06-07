@@ -3,7 +3,7 @@ package memo.entity;
 import java.time.LocalDateTime;
 
 public class Memo {
-	int number; // 글 번호
+	int idx; // 글 번호
 	String name; // 작성자 이름
 	String password; // 비밀번호
 	String memoContent; // 게시글
@@ -20,15 +20,15 @@ public class Memo {
 	}
 
 	public Memo(int number, String name, String password, String memoContent, LocalDateTime createdAt) {
-		this.number = number;
+		this.idx = number;
 		this.name = name;
 		this.password = password;
 		this.memoContent = memoContent;
 		this.createdAt = createdAt;
 	}
 
-	public int getNumber() {
-		return number;
+	public int getIdx() {
+		return idx;
 	}
 
 	public String getName() {

@@ -6,10 +6,11 @@ import memo.entity.Memo;
 
 public class MemoService implements IMemoService {
 
+	Scanner sc = new Scanner(System.in);
+
 	// 입력 기능
 	@Override
 	public Memo createMemo() {
-	Scanner sc = new Scanner(System.in);
 	System.out.print("이름 입력 : ");
 	String name = sc.next();
 	System.out.print("비밀번호 입력 : ");
