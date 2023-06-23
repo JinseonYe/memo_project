@@ -28,8 +28,7 @@ public class MemoApplication {
 				memoList.getMemoList();
 			} else if(selectMenu == 3) {
 				System.out.println("메모를 수정합니다.");
-
-
+				memoList.updateMemo();
 			} else if(selectMenu == 4) {
 				System.out.println("메모를 삭제합니다.");
 
