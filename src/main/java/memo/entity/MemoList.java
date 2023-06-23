@@ -1,31 +1,32 @@
 package memo.entity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class MemoList {
-	// 여러 건의 메모를 저장하는 리스트
-	private List<Memo> memoList = new ArrayList<Memo>();
 
-	// 메모 전체 조회
-	public List<Memo> getMemoList() {
-		// 최신에 작성한 순서로 메모를 출력한다.
-		memoList.sort(new MemoDateComparator());
-		return memoList;
+	List<Memo> memoList = new ArrayList<>();
+	Scanner sc = new Scanner(System.in);
+
+	//리스트에 메모 추가
+	public void add() {
+		int idx = memoList.size() + 1;
+		System.out.print("이름 입력 : ");
+		String name = sc.next();
+		System.out.print("비밀번호 입력 : ");
+		String password = sc.next();
+		System.out.print("메모 입력 : ");
+		String memoContent = sc.next();
+		System.out.println("메모가 생성되었습니다.");
+		memoList.add(new Memo(idx, name, password, memoContent));
 	}
 
-	// 메모 추가
-	public void add(Memo memo){
-		memoList.add(memo);
-	}
-
-	// 메모 수정 또는 삭제 시 메모 번호로 해당 메모를 리턴
-	public Memo getMemoIndex(int idx){
-		return memoList.get(idx);
-	}
-
-	public Memo remove(int idx){
-		return memoList.remove(idx);
+	//최신 작성 순으로 메모 리스트 출력
+	public void getMemoList() {
+		memoList.sort(new MemoDateComparator().reversed());
+		for (Memo memo : memoList) {
+			System.out.println(memo);
+		}
 	}
 }

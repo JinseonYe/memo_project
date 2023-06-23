@@ -3,28 +3,18 @@ package memo.entity;
 import java.time.LocalDateTime;
 
 public class Memo {
-	int idx; // 글 번호
-	String name; // 작성자 이름
-	String password; // 비밀번호
-	String memoContent; // 게시글
-	LocalDateTime createdAt; // 작성일(컴퓨터 시스템의 날짜와 시간을 자동으로 저장)
+	private int idx; // 글 번호
+	private String name; // 작성자 이름
+	private String password; // 비밀번호
+	private String memoContent; // 게시글
+	private LocalDateTime createdAt; // 작성일(컴퓨터 시스템의 날짜와 시간을 자동으로 저장)
 
-	public Memo() {
-
-	}
-
-	public Memo(String name, String password, String memoContent) {
+	public Memo(int idx, String name, String password, String memoContent) {
+		this.idx = idx;
 		this.name = name;
 		this.password = password;
 		this.memoContent = memoContent;
-	}
-
-	public Memo(int number, String name, String password, String memoContent, LocalDateTime createdAt) {
-		this.idx = number;
-		this.name = name;
-		this.password = password;
-		this.memoContent = memoContent;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public int getIdx() {
@@ -43,6 +33,10 @@ public class Memo {
 		return memoContent;
 	}
 
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+
 	public void setMemoContent(String memoContent) {
 		this.memoContent = memoContent;
 	}
@@ -53,5 +47,16 @@ public class Memo {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Memo{" +
+			"idx=" + idx +
+			", name='" + name + '\'' +
+			", password='" + password + '\'' +
+			", memoContent='" + memoContent + '\'' +
+			", createdAt=" + createdAt +
+			'}';
 	}
 }
