@@ -63,4 +63,22 @@ public class MemoList {
 			System.out.println("비밀번호가 틀렸습니다.");
 		}
 	}
+
+	//메모 삭제
+	public void deleteMemo() {
+		//입력한 번호에 해당하는 메모 찾기
+		System.out.println("삭제할 메모의 번호 입력 : ");
+		int idx = sc.nextInt();
+		Memo memo = getMemo(idx);
+		//해당메모의 비밀번호 입력하기
+		System.out.println("비밀번호 : ");
+		String password = sc.next();
+		//비밀번호가 맞으면 수정, 틀리면 메인메뉴로 나가기
+		if (password.equals(memo.getPassword())) {
+			memoList.remove(memo);
+			System.out.println("성공적으로 삭제되었습니다.");
+		} else {
+			System.out.println("비밀번호가 틀렸습니다.");
+		}
+	}
 }

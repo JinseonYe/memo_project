@@ -3,7 +3,6 @@ package memo;
 import java.util.Scanner;
 
 import memo.entity.MemoList;
-import memo.service.MemoService;
 
 public class MemoApplication {
 	public static void main(String[] args) {
@@ -30,8 +29,7 @@ public class MemoApplication {
 				memoList.updateMemo();
 			} else if(selectMenu == 4) {
 				System.out.println("메모를 삭제합니다.");
-
-
+				memoList.deleteMemo();
 			} else if(selectMenu == 5) {
 				break;
 
