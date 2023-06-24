@@ -8,7 +8,6 @@ import memo.service.MemoService;
 public class MemoApplication {
 	public static void main(String[] args) {
 
-		MemoService memoService = new MemoService();
 		MemoList memoList = new MemoList();
 
 		System.out.println("-------------메모장 프로그램입니다.------------");

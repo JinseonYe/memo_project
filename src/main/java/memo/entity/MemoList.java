@@ -31,29 +31,36 @@ public class MemoList {
 		}
 	}
 
-	public Memo getIndex(int idx) {
-		return memoList.get(idx);
+	//인덱스 번호에 해당하는 메모 찾기
+	public Memo getMemo(int idx) {
+		if (0 < idx && idx <= memoList.size()) {
+			for (Memo memo : memoList) {
+				if (idx == memo.getIdx()) {
+					return memo;
+				}
+			}
+		}
+		throw new RuntimeException("메모가 존재하지 않습니다.");
 	}
 
 	//메모 수정
 	public void updateMemo() {
+		//입력한 번호에 해당하는 메모 찾기
 		System.out.println("수정할 메모의 번호 입력 : ");
 		int idx = sc.nextInt();
-		if (getIndex(idx) == null) {
-			System.out.println("메모가 존재하지 않습니다.");
+		Memo memo = getMemo(idx);
+		//해당메모의 비밀번호 입력하기
+		System.out.println("비밀번호 : ");
+		String password = sc.next();
+		//비밀번호가 맞으면 수정, 틀리면 메인메뉴로 나가기
+		if (password.equals(memo.getPassword())) {
+			System.out.println("수정할 내용 입력 : ");
+			String memoContent = sc.next();
+			memo.setMemoContent(memoContent);
+			memo.setCreatedAt(LocalDateTime.now());
+			System.out.println("성공적으로 수정되었습니다.");
 		} else {
-			System.out.println("비밀번호 : ");
-			String password = sc.next();
-			Memo memo = memoList.get(idx);
-			if (password.equals(memo.getPassword())) {
-				System.out.println("수정할 내용 입력 : ");
-				String memoContent = sc.next();
-				memo.setMemoContent(memoContent);
-				memo.setCreatedAt(LocalDateTime.now());
-				System.out.println("성공적으로 수정되었습니다.");
-			} else {
-				System.out.println("비밀번호가 틀렸습니다.");
-			}
+			System.out.println("비밀번호가 틀렸습니다.");
 		}
 	}
 }
