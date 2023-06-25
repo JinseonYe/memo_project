@@ -12,35 +12,22 @@ public class MemoList {
 
 	//리스트에 메모 추가
 	public void add() {
-		int idx = memoList.size() + 1;
+		int idx = countIdx();
 		System.out.print("이름 입력 : ");
 		String name = sc.next();
 		System.out.print("비밀번호 입력 : ");
 		String password = sc.next();
 		System.out.print("메모 입력 : ");
 		String memoContent = sc.next();
-		System.out.println("메모가 생성되었습니다.");
 		memoList.add(new Memo(idx, name, password, memoContent));
 	}
 
-	//최신 작성 순으로 메모 리스트 출력
+	//최신 작성 순으로 메모 리스트 조회
 	public void getMemoList() {
 		memoList.sort(new MemoDateComparator().reversed());
 		for (Memo memo : memoList) {
 			System.out.println(memo);
 		}
-	}
-
-	//인덱스 번호에 해당하는 메모 찾기
-	public Memo getMemo(int idx) {
-		if (0 < idx && idx <= memoList.size()) {
-			for (Memo memo : memoList) {
-				if (idx == memo.getIdx()) {
-					return memo;
-				}
-			}
-		}
-		throw new RuntimeException("메모가 존재하지 않습니다.");
 	}
 
 	//메모 수정
@@ -80,5 +67,27 @@ public class MemoList {
 		} else {
 			System.out.println("비밀번호가 틀렸습니다.");
 		}
+	}
+
+	//인덱스 번호에 해당하는 메모 찾기
+	public Memo getMemo(int idx) {
+		for (Memo memo : memoList) {
+			if (idx == memo.getIdx()) {
+				return memo;
+			}
+		}
+		throw new RuntimeException("메모가 존재하지 않습니다.");
+	}
+
+	//글이 삭제된 후 새 글이 입력될 때 idx가 기존 idx값에 이어서 1씩 증가할 수 있도록 count의 값을 수정한다.
+	public int countIdx() {
+		int idx = 0;
+		if (memoList.isEmpty()) {
+			idx = 1;
+		} else {
+			Memo lastMemo = memoList.get(memoList.size() - 1);
+			idx = lastMemo.getIdx() + 1;
+		}
+		return idx;
 	}
 }
