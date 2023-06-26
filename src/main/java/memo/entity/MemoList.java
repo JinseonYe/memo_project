@@ -2,6 +2,7 @@ package memo.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,10 +25,14 @@ public class MemoList {
 
 	//최신 작성 순으로 메모 리스트 조회
 	public void getMemoList() {
+		//date를 기준으로 내림차순
 		memoList.sort(new MemoDateComparator().reversed());
 		for (Memo memo : memoList) {
 			System.out.println(memo);
 		}
+		MemoIdxComparator ic = new MemoIdxComparator();
+		//idx를 기준으로 내림차순
+		Collections.sort(memoList, ic); //memoList.sort(ic);로 대체 가능
 	}
 
 	//메모 수정
